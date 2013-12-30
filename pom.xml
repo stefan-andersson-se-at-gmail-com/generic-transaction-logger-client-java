@@ -198,6 +198,18 @@
     
     <repositories>     
         
+        
+        <repository>
+            <id>all-nexus</id>
+            <name>all-nexus</name>
+            <layout>default</layout>
+            <url>http://localhost:8081/nexus/content/groups/allrepos/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        
+        
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
