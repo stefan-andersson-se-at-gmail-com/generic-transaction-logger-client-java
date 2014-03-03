@@ -35,7 +35,7 @@ public class LogMessageWriterWebsphere implements LogMessageWriter {
             workManager.doWork(new SoapWork(logMessageContainer));
 
         } catch (Exception ex) {
-            Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
@@ -94,7 +94,7 @@ public class LogMessageWriterWebsphere implements LogMessageWriter {
                 builder.append("OR set key and valid URl in logger.propperties file! \n");
 
                 Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, builder.toString());
-                Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
             }
         }
     }

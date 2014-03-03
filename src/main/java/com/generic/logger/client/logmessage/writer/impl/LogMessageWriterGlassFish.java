@@ -82,7 +82,7 @@ public class LogMessageWriterGlassFish implements LogMessageWriter {
             threadPoolExecutor.execute(task);
 
         } catch (NamingException ex) {
-            Logger.getLogger(LogMessageWriterGlassFish.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogMessageWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
