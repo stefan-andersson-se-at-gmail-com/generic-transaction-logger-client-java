@@ -27,20 +27,14 @@ public class LogWriterFacade implements Serializable {
 
         try {
             String environment = LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGGING_IN_ENVIRONMENT);
-
             if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_STANDALONE.equalsIgnoreCase(environment)) {
                 new LogMessageWriterJavaStandalone().write(logMessageContainer);
-
             } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_GLASSFISHV3.equalsIgnoreCase(environment)) {
                 new LogMessageWriterGlassFish().write(logMessageContainer);
-
             } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_WEBSPHEREV6.equalsIgnoreCase(environment)) {
                 new LogMessageWriterWebsphere().write(logMessageContainer);
-
             } else {
-
                 Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, "Invalid logger.propperies! No prop value=[ LOGGING_IN_ENVIRONMENT ]");
-
             }
 
         } catch (Exception ex) {

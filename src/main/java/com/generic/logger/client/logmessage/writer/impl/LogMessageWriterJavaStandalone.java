@@ -50,7 +50,12 @@ public class LogMessageWriterJavaStandalone implements LogMessageWriter {
                         LogMessageService service = new LogMessageService(wsdlLocation, QName);
                         service.getTransactionLoggerInPort().persist(transactions);
 
-                    } catch (MalformedURLException ex) {
+                    } catch (MalformedURLException ex) {              
+                        
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("Missing [ ").append(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION).append(" ] \n");
+                        builder.append("No valid URl was found in logger.propperties! \n");
+                        Logger.getLogger(LogMessageWriterJavaStandalone.class.getName()).log(Level.SEVERE, null, builder.toString());
                         Logger.getLogger(LogMessageWriterJavaStandalone.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
