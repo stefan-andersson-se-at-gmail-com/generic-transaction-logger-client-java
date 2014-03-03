@@ -33,11 +33,9 @@ public class LoggerToProxyObjects {
         transaction.setUTCLocalTimeStamp(LoggerToProxyObjects.long2Gregorian(logMessage.getUTCLocalTimeStamp()));
         transaction.setIsError(logMessage.isIsErrorType());
 
-
         if (logMessage.getExpiryDate() != null) {
             transaction.setExpiryDate(LoggerToProxyObjects.date2Gregorian(logMessage.getExpiryDate()));
         }
-
 
         // 
         // Flow
@@ -66,22 +64,6 @@ public class LoggerToProxyObjects {
                 transaction.getTransactionLogData().add(transactionLogData);
             }
         }
-
-
-        // 
-        // LogMessageMetaInfo
-        for (LogMessageMetaInfo metaInfo : logMessage.getMetaInfo()) {
-
-            String metaLabel = metaInfo.getMetaInfoLabel() != null ? metaInfo.getMetaInfoLabel().trim() : "";
-            String metaValue = metaInfo.getMetaInfoValue() != null ? metaInfo.getMetaInfoValue().trim() : "";
-            if (!metaLabel.isEmpty()) {
-                Transactions.Transaction.TransactionMetaInfo transactionMetaInfo = new Transactions.Transaction.TransactionMetaInfo();
-                transactionMetaInfo.setMetaLabel(StringEscapeUtils.escapeXml(metaLabel));
-                transactionMetaInfo.setMetaValue(StringEscapeUtils.escapeXml(metaValue));
-                transaction.getTransactionMetaInfo().add(transactionMetaInfo);
-            }
-        }
-
 
         return transaction;
 
