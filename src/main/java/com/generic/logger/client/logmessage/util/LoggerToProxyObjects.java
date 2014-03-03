@@ -8,7 +8,6 @@ import com.generic.global.transactionlogger.ObjectFactory;
 import com.generic.global.transactionlogger.Transactions;
 import com.generic.logger.client.logmessage.interfaces.LogMessage;
 import com.generic.logger.client.logmessage.interfaces.LogMessageData;
-import com.generic.logger.client.logmessage.interfaces.LogMessageMetaInfo;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -52,13 +51,13 @@ public class LoggerToProxyObjects {
         // LogMessageData
         for (LogMessageData logData : logMessage.getLogData()) {
 
-            String contentLabel = logData.getContentDescription() != null ? logData.getContentDescription().trim() : "";
+            String label = logData.getLabel() != null ? logData.getLabel().trim() : "";
             String content = logData.getContent() != null ? logData.getContent().trim() : "";
-            String mimeType = logData.getContentMimeType() != null ? logData.getContentMimeType().trim() : "";
+            String mimeType = logData.getMimeType() != null ? logData.getMimeType().trim() : "";
 
-            if (!contentLabel.isEmpty() && !mimeType.isEmpty()) {
+            if (!label.isEmpty() && !mimeType.isEmpty() && content.isEmpty()) {
                 Transactions.Transaction.TransactionLogData transactionLogData = new Transactions.Transaction.TransactionLogData();
-                transactionLogData.setContentDescription(StringEscapeUtils.escapeXml(contentLabel));
+                transactionLogData.setContentDescription(StringEscapeUtils.escapeXml(label));
                 transactionLogData.setContent(StringEscapeUtils.escapeXml(content));
                 transactionLogData.setContentMimeType(mimeType);
                 transaction.getTransactionLogData().add(transactionLogData);

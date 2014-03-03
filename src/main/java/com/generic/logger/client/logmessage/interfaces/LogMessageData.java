@@ -12,15 +12,15 @@ import java.io.Serializable;
  */
 public interface LogMessageData extends Serializable {
 
-    public String getContentDescription();
+    public String getLabel();
 
-    public void setContentDescription(String contentDescription);
+    public void setLabel(String label);
 
     public String getContent();
 
     public void setContent(String content);
 
-    public String getContentMimeType();
+    public String getMimeType();
 
-    public void setContentMimeType(String contentMimeType);
+    public void setMimeType(String mimeType);
 }

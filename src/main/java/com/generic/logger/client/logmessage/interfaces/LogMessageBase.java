@@ -13,9 +13,7 @@ import java.util.List;
  */
 public interface LogMessageBase extends Serializable {
 
-    void addContent(String contentDescription, String content, String contentMimeType);
+    void addContent(String label, String content, String mimeType);
 
     List<LogMessageData> getLogData();
-
-    List<LogMessageMetaInfo> getMetaInfo();
 }

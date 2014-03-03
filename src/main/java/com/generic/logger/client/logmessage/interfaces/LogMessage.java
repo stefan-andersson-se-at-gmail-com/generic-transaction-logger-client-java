@@ -15,8 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 public interface LogMessage extends LogMessageBase, Serializable {
 
-    void addMetaInfo(@NotNull String metaInfoLabel, @NotNull String metaInfoValue);
-
+  
     String getApplicationName();
 
     Date getExpiryDate();
@@ -42,8 +41,6 @@ public interface LogMessage extends LogMessageBase, Serializable {
     void setFlowPointName(String flowPointName);
 
     void setIsErrorType(boolean isErrorType);
-
-    void setMetaInfo(List<LogMessageMetaInfo> metaInfo);
 
     void setUTCLocalTimeStamp(long UTCLocalTimeStamp);
 

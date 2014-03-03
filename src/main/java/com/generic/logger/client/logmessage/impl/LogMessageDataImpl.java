@@ -14,37 +14,37 @@ import javax.validation.constraints.NotNull;
  */
 public class LogMessageDataImpl implements LogMessageData, Serializable {
 
-    private String contentDescription = "";
-    private String contentMimeType = "";
+    private String label = "";
+    private String mimeType = "";
     private String content = "";
     public LogMessageDataImpl(
-            @NotNull String contentDescription,
+            @NotNull String label,
             @NotNull String content,
-            @NotNull String contentMimeType) {
+            @NotNull String mimeType) {
 
-        this.contentDescription = contentDescription;
+        this.label = label;
         this.content = content;
-        this.contentMimeType = contentMimeType;
+        this.mimeType = mimeType;
     }
 
     @Override
-    public String getContentDescription() {
-        return contentDescription;
+    public String getLabel() {
+        return label;
     }
 
     @Override
-    public void setContentDescription(String contentDescription) {
-        this.contentDescription = contentDescription;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     @Override
-    public String getContentMimeType() {
-        return contentMimeType;
+    public String getMimeType() {
+        return mimeType;
     }
 
     @Override
-    public void setContentMimeType(String contentMimeType) {
-        this.contentMimeType = contentMimeType;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
     @Override
