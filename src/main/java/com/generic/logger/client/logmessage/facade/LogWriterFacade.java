@@ -38,7 +38,7 @@ public class LogWriterFacade implements Serializable {
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, ex.getMessage());
 
         }
 

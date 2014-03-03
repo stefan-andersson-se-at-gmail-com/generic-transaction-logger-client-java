@@ -55,9 +55,9 @@ public class LoggerToProxyObjects {
             String content = logData.getContent() != null ? logData.getContent().trim() : "";
             String mimeType = logData.getMimeType() != null ? logData.getMimeType().trim() : "";
 
-            if (!label.isEmpty() && !mimeType.isEmpty() && content.isEmpty()) {
+            if (!label.isEmpty() && !mimeType.isEmpty() && !content.isEmpty()) {
                 Transactions.Transaction.TransactionLogData transactionLogData = new Transactions.Transaction.TransactionLogData();
-                transactionLogData.setContentDescription(StringEscapeUtils.escapeXml(label));
+                transactionLogData.setContentLabel(StringEscapeUtils.escapeXml(label));
                 transactionLogData.setContent(StringEscapeUtils.escapeXml(content));
                 transactionLogData.setContentMimeType(mimeType);
                 transaction.getTransactionLogData().add(transactionLogData);
