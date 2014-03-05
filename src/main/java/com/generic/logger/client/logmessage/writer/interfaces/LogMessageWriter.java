@@ -4,6 +4,7 @@
  */
 package com.generic.logger.client.logmessage.writer.interfaces;
 
+import com.generic.global.transactionlogger.Response;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
 import java.io.Serializable;
 
@@ -13,5 +14,6 @@ import java.io.Serializable;
  */
 public interface LogMessageWriter extends Serializable {
 
-    public void write(final LogMessageContainer logMessageContainer );
+    public Response writeSynchronous(final LogMessageContainer logMessageContainer);
+    public void writeAsynchronous(final LogMessageContainer logMessageContainer);
 }

@@ -4,6 +4,7 @@
  */
 package com.generic.logger.client.logmessage.writer.impl;
 
+import com.generic.global.transactionlogger.Response;
 import com.generic.global.transactionlogger.TransactionLogAsynchronousService;
 import com.ibm.websphere.asynchbeans.Work;
 import com.ibm.websphere.asynchbeans.WorkManager;
@@ -25,9 +26,15 @@ import javax.xml.namespace.QName;
  *
  * @author ds38745
  */
-public class LogMessageWriterWebsphere implements LogMessageWriter {
+public class WriterWebsphere implements LogMessageWriter {
 
-    public void write(final LogMessageContainer logMessageContainer) {
+    @Override
+    public Response writeSynchronous(LogMessageContainer logMessageContainer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void writeAsynchronous(final LogMessageContainer logMessageContainer) {
 
         try {
 
@@ -35,10 +42,12 @@ public class LogMessageWriterWebsphere implements LogMessageWriter {
             workManager.doWork(new SoapWork(logMessageContainer));
 
         } catch (Exception ex) {
-            Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
+
+     
 
     // 
     // Private inner static class
@@ -52,7 +61,7 @@ public class LogMessageWriterWebsphere implements LogMessageWriter {
 
         @Override
         public void release() {
-            Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
+            Logger.getLogger(WriterWebsphere.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
         }
 
         @Override
@@ -93,8 +102,8 @@ public class LogMessageWriterWebsphere implements LogMessageWriter {
                 builder.append(" ] \n");
                 builder.append("OR set key and valid URl in logger.propperties file! \n");
 
-                Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, builder.toString());
-                Logger.getLogger(LogMessageWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+                Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, builder.toString());
+                Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
             }
         }
     }
