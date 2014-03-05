@@ -4,7 +4,7 @@
  */
 package com.generic.logger.client.logmessage.writer.impl;
 
-import com.generic.global.transactionlogger.LogMessageService;
+import com.generic.global.transactionlogger.TransactionLogAsynchronousService;
 import com.generic.global.transactionlogger.Transactions;
 import com.generic.logger.client.logmessage.impl.ProxyObjectMapperImpl;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
@@ -44,7 +44,7 @@ public class LogMessageWriterGlassFish implements LogMessageWriter {
 
                         // 
                         // fetch endPoint
-                        QName QName = new QName("urn:generic.com:Global:TransactionLogger", "LogMessageService");
+                        QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogAsynchronousService");
 
                         //
                         // fetch Appserver environment variable iff not exist! use logger.properties value
@@ -58,8 +58,8 @@ public class LogMessageWriterGlassFish implements LogMessageWriter {
 
                         //
                         // Send
-                        LogMessageService service = new LogMessageService(wsdlLocation, QName);
-                        service.getTransactionLoggerInPort().persist(transactions);
+                        TransactionLogAsynchronousService service = new TransactionLogAsynchronousService(wsdlLocation, QName);
+                        service.getTransactionLogAsynchronousInPort().persist(transactions);
 
                     } catch (MalformedURLException ex) {
 

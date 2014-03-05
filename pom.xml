@@ -120,7 +120,8 @@
                     <!-- Used to fetch and generate client classes      -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <wsdlUrls>
-                        <wsdlUrl>http://localhost:8080/log_message_services_one_dev/LogMessageService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8080/log_message_services_one_dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8080/log_message_services_one_dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
                     </wsdlUrls>
 
                     <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
