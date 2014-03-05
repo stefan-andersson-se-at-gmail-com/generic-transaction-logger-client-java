@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author ds38745
  */
-public interface LogMessageWriter extends Serializable {
+public interface LogWriter extends Serializable {
 
     public Response writeSynchronous(final LogMessageContainer logMessageContainer);
     public void writeAsynchronous(final LogMessageContainer logMessageContainer);

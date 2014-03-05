@@ -13,7 +13,7 @@ import com.generic.logger.client.logmessage.impl.ProxyObjectMapperImpl;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
 import com.generic.logger.client.logmessage.util.LoggerPropertyKeys;
 import com.generic.logger.client.logmessage.util.LoggerPropertyUtil;
-import com.generic.logger.client.logmessage.writer.interfaces.LogMessageWriter;
+import com.generic.logger.client.logmessage.writer.interfaces.LogWriter;
 import com.generic.thread.pool.executor.ThreadPoolExecutor;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,7 +27,7 @@ import javax.xml.namespace.QName;
  *
  * @author ds38745
  */
-public class WriterGlassFish implements LogMessageWriter {
+public class LogWriterGlassFish implements LogWriter {
 
     @Override
     public Response writeSynchronous(final LogMessageContainer logMessageContainer) {
@@ -61,10 +61,10 @@ public class WriterGlassFish implements LogMessageWriter {
             response = service.getTransactionLogSynchronousInPort().persist(transactions);
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
-            Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
         } catch (ServiceFault ex) {
-            Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
         //
@@ -108,8 +108,8 @@ public class WriterGlassFish implements LogMessageWriter {
                         service.getTransactionLogAsynchronousInPort().persist(transactions);
 
                     } catch (MalformedURLException ex) {
-                        Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
-                        Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
+                        Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+                        Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
                     }
 
                 }
@@ -118,7 +118,7 @@ public class WriterGlassFish implements LogMessageWriter {
             threadPoolExecutor.execute(task);
 
         } catch (NamingException ex) {
-            Logger.getLogger(WriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }

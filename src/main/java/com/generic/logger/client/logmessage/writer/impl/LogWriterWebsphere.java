@@ -13,7 +13,7 @@ import com.generic.logger.client.logmessage.impl.ProxyObjectMapperImpl;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
 import com.generic.logger.client.logmessage.util.LoggerPropertyKeys;
 import com.generic.logger.client.logmessage.util.LoggerPropertyUtil;
-import com.generic.logger.client.logmessage.writer.interfaces.LogMessageWriter;
+import com.generic.logger.client.logmessage.writer.interfaces.LogWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ import javax.xml.namespace.QName;
  *
  * @author ds38745
  */
-public class WriterWebsphere implements LogMessageWriter {
+public class LogWriterWebsphere implements LogWriter {
 
     @Override
     public Response writeSynchronous(LogMessageContainer logMessageContainer) {
@@ -42,7 +42,7 @@ public class WriterWebsphere implements LogMessageWriter {
             workManager.doWork(new SoapWork(logMessageContainer));
 
         } catch (Exception ex) {
-            Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
@@ -61,7 +61,7 @@ public class WriterWebsphere implements LogMessageWriter {
 
         @Override
         public void release() {
-            Logger.getLogger(WriterWebsphere.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
+            Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
         }
 
         @Override
@@ -102,8 +102,8 @@ public class WriterWebsphere implements LogMessageWriter {
                 builder.append(" ] \n");
                 builder.append("OR set key and valid URl in logger.propperties file! \n");
 
-                Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, builder.toString());
-                Logger.getLogger(WriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+                Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.SEVERE, builder.toString());
+                Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
             }
         }
     }

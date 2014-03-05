@@ -13,7 +13,7 @@ import com.generic.logger.client.logmessage.impl.ProxyObjectMapperImpl;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
 import com.generic.logger.client.logmessage.util.LoggerPropertyKeys;
 import com.generic.logger.client.logmessage.util.LoggerPropertyUtil;
-import com.generic.logger.client.logmessage.writer.interfaces.LogMessageWriter;
+import com.generic.logger.client.logmessage.writer.interfaces.LogWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.Executor;
@@ -25,7 +25,7 @@ import javax.xml.namespace.QName;
  *
  * @author ds38745
  */
-public class WriterJavaStandalone implements LogMessageWriter {
+public class LogWriterJavaStandalone implements LogWriter {
 
     @Override
     public Response writeSynchronous(LogMessageContainer logMessageContainer) {
@@ -49,10 +49,10 @@ public class WriterJavaStandalone implements LogMessageWriter {
             response = service.getTransactionLogSynchronousInPort().persist(transactions);
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(WriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
-            Logger.getLogger(WriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
         } catch (ServiceFault ex) {
-            Logger.getLogger(WriterJavaStandalone.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //
@@ -87,8 +87,8 @@ public class WriterJavaStandalone implements LogMessageWriter {
                         service.getTransactionLogAsynchronousInPort().persist(transactions);
 
                     } catch (MalformedURLException ex) {
-                        Logger.getLogger(WriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
-                        Logger.getLogger(WriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
+                        Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+                        Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
                     }
                 }
             };
@@ -96,7 +96,7 @@ public class WriterJavaStandalone implements LogMessageWriter {
             logWriterJavaStandaloneExecutor.execute(task);
 
         } catch (Exception ex) {
-            Logger.getLogger(WriterJavaStandalone.class
+            Logger.getLogger(LogWriterJavaStandalone.class
                     .getName()).log(Level.SEVERE, ex.getMessage());
         }
 
