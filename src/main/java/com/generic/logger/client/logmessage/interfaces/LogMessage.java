@@ -6,7 +6,6 @@ package com.generic.logger.client.logmessage.interfaces;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,7 +14,6 @@ import javax.validation.constraints.NotNull;
  */
 public interface LogMessage extends LogMessageBase, Serializable {
 
-  
     String getApplicationName();
 
     Date getExpiryDate();
@@ -45,4 +43,5 @@ public interface LogMessage extends LogMessageBase, Serializable {
     void setUTCLocalTimeStamp(long UTCLocalTimeStamp);
 
     void setUniqueId(String uniqueId);
+
 }
