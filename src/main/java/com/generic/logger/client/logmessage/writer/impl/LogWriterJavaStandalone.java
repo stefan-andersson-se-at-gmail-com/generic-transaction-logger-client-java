@@ -91,6 +91,9 @@ public class LogWriterJavaStandalone implements LogWriter {
                         String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC).toString();
                         Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
                         Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
+                    } catch (Throwable ex) {
+                        Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, "=========== [ JAVA Client Exception ] =========");
+                        Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
                     }
                 }
             };
