@@ -41,7 +41,7 @@ public class LogWriterJavaStandalone implements LogWriter {
             // 
             // fetch endPoint
             QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogSynchronousService");
-            URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+            URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
 
             //
             // Send
@@ -49,7 +49,8 @@ public class LogWriterJavaStandalone implements LogWriter {
             response = service.getTransactionLogSynchronousInPort().persist(transactions);
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+            String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC).toString();
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
             Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
         } catch (ServiceFault ex) {
             Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +80,7 @@ public class LogWriterJavaStandalone implements LogWriter {
                         // 
                         // fetch endPoint
                         QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogAsynchronousService");
-                        URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+                        URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
 
                         //
                         // Send
@@ -87,7 +88,8 @@ public class LogWriterJavaStandalone implements LogWriter {
                         service.getTransactionLogAsynchronousInPort().persist(transactions);
 
                     } catch (MalformedURLException ex) {
-                        Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+                        String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC).toString();
+                        Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
                         Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
                     }
                 }
@@ -110,9 +112,9 @@ public class LogWriterJavaStandalone implements LogWriter {
         }
     }
 
-    private StringBuilder getMalformedURLExceptionText() {
+    private StringBuilder getMalformedURLExceptionText(String wsdl_location) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Missing [ ").append(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION).append(" ] \n");
+        builder.append("Missing [ ").append(wsdl_location).append(" ] \n");
         builder.append("No valid URl was found in logger.propperties! \n");
         return builder;
     }

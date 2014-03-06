@@ -49,10 +49,10 @@ public class LogWriterGlassFish implements LogWriter {
             // fetch Appserver environment variable iff not exist! use logger.properties value
             URL wsdlLocation = null;
             try {
-                wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+                wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
 
             } catch (NamingException e) {
-                wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+                wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
             }
 
             //
@@ -61,7 +61,8 @@ public class LogWriterGlassFish implements LogWriter {
             response = service.getTransactionLogSynchronousInPort().persist(transactions);
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+            String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC).toString();
+            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
             Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
         } catch (ServiceFault ex) {
             Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
@@ -96,10 +97,10 @@ public class LogWriterGlassFish implements LogWriter {
                         // fetch Appserver environment variable iff not exist! use logger.properties value
                         URL wsdlLocation = null;
                         try {
-                            wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+                            wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
 
                         } catch (NamingException e) {
-                            wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION));
+                            wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
                         }
 
                         //
@@ -108,7 +109,8 @@ public class LogWriterGlassFish implements LogWriter {
                         service.getTransactionLogAsynchronousInPort().persist(transactions);
 
                     } catch (MalformedURLException ex) {
-                        Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, getMalformedURLExceptionText().toString());
+                        String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC).toString();
+                        Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
                         Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
                     }
 
@@ -123,13 +125,13 @@ public class LogWriterGlassFish implements LogWriter {
 
     }
 
-    private StringBuilder getMalformedURLExceptionText() {
+    private StringBuilder getMalformedURLExceptionText(String wsdl_location) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Missing key=[ ").append(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION).append(" ]. \n");
-        builder.append("No jndi loockup for [ ").append(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION).append(" ] was found. \n");
+        builder.append("Missing key=[ ").append(wsdl_location).append(" ]. \n");
+        builder.append("No jndi loockup for [ ").append(wsdl_location).append(" ] was found. \n");
         builder.append("To set application custom resource, run command ");
         builder.append("[ \n");
-        builder.append("./asadmin create-custom-resource --restype=java.lang.String --factoryclass=org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --property value=\"http\\://<the value>\" ").append(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION);
+        builder.append("./asadmin create-custom-resource --restype=java.lang.String --factoryclass=org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --property value=\"http\\://<the value>\" ").append(wsdl_location);
         builder.append(" ] \n");
         builder.append("OR set key and valid URl in logger.propperties file! \n");
         return builder;
