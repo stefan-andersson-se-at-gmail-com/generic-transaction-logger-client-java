@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
  */
 public interface LogMessage extends LogMessageBase, Serializable {
 
+  
     String getApplicationName();
 
     Date getExpiryDate();
@@ -43,5 +44,5 @@ public interface LogMessage extends LogMessageBase, Serializable {
     void setUTCLocalTimeStamp(long UTCLocalTimeStamp);
 
     void setUniqueId(String uniqueId);
-
+    
 }

@@ -98,8 +98,8 @@ public class LogWriterJavaStandalone implements LogWriter {
             logWriterJavaStandaloneExecutor.execute(task);
 
         } catch (Exception ex) {
-            Logger.getLogger(LogWriterJavaStandalone.class
-                    .getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, "=========== [ JAVA Client Exception ] =========");
+            Logger.getLogger(LogWriterJavaStandalone.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
