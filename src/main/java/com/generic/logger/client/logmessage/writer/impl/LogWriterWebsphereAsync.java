@@ -4,18 +4,15 @@
  */
 package com.generic.logger.client.logmessage.writer.impl;
 
-import com.generic.global.transactionlogger.Response;
-import com.generic.global.transactionlogger.ServiceFault;
 import com.generic.global.transactionlogger.TransactionLogAsynchronousService;
-import com.generic.global.transactionlogger.TransactionLogSynchronousService;
-import com.ibm.websphere.asynchbeans.Work;
-import com.ibm.websphere.asynchbeans.WorkManager;
 import com.generic.global.transactionlogger.Transactions;
 import com.generic.logger.client.logmessage.impl.ProxyObjectMapperImpl;
 import com.generic.logger.client.logmessage.interfaces.LogMessageContainer;
 import com.generic.logger.client.logmessage.util.LoggerPropertyKeys;
 import com.generic.logger.client.logmessage.util.LoggerPropertyUtil;
-import com.generic.logger.client.logmessage.writer.interfaces.LogWriter;
+import com.generic.logger.client.logmessage.writer.interfaces.async.LogWriter;
+import com.ibm.websphere.asynchbeans.Work;
+import com.ibm.websphere.asynchbeans.WorkManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -28,53 +25,12 @@ import javax.xml.namespace.QName;
  *
  * @author ds38745
  */
-public class LogWriterWebsphere implements LogWriter {
+public class LogWriterWebsphereAsync implements LogWriter {
+
+
 
     @Override
-    public Response writeSynchronous(LogMessageContainer logMessageContainer) {
-        Response response = new Response();
-        response.setReturn(false);
-
-        try {
-
-            // 
-            // Convert to proxy object
-            Transactions transactions = new ProxyObjectMapperImpl().logToSOAPTransactions(logMessageContainer);
-
-            // 
-            // fetch endPoint
-            QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogSynchronousService");
-
-            //
-            // fetch Appserver environment variable iff not exist! use logger.properties value
-            URL wsdlLocation = null;
-            try {
-                wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
-
-            } catch (NamingException e) {
-                wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
-            }
-
-            //
-            // Send
-            TransactionLogSynchronousService service = new TransactionLogSynchronousService(wsdlLocation, QName);
-            response = service.getTransactionLogSynchronousInPort().persist(transactions);
-
-        } catch (MalformedURLException ex) {
-            String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC).toString();
-            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
-            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
-        } catch (ServiceFault ex) {
-            Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, ex.getMessage());
-        }
-
-        //
-        // Return 
-        return response;
-    }
-
-    @Override
-    public void writeAsynchronous(final LogMessageContainer logMessageContainer) {
+    public void write(final LogMessageContainer logMessageContainer) {
 
         try {
 
@@ -82,7 +38,7 @@ public class LogWriterWebsphere implements LogWriter {
             workManager.doWork(new SoapWork(logMessageContainer));
 
         } catch (Exception ex) {
-            Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterWebsphereAsync.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
     }
@@ -99,7 +55,7 @@ public class LogWriterWebsphere implements LogWriter {
 
         @Override
         public void release() {
-            Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
+            Logger.getLogger(LogWriterWebsphereAsync.class.getName()).log(Level.INFO, "[ SoapWorkLogMessage. release() was called ]");
         }
 
         @Override
@@ -132,8 +88,8 @@ public class LogWriterWebsphere implements LogWriter {
 
             } catch (MalformedURLException ex) {
                 String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC).toString();
-                Logger.getLogger(LogWriterGlassFish.class.getName()).log(Level.SEVERE, msgText);
-                Logger.getLogger(LogWriterWebsphere.class.getName()).log(Level.SEVERE, ex.getMessage());
+                Logger.getLogger(LogWriterGlassFishAsync.class.getName()).log(Level.SEVERE, msgText);
+                Logger.getLogger(LogWriterWebsphereAsync.class.getName()).log(Level.SEVERE, ex.getMessage());
             }
         }
     }
