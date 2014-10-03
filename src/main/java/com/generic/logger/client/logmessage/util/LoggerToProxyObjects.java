@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LoggerToProxyObjects {
 

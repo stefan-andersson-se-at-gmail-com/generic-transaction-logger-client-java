@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LogWriterFacade implements Serializable {
 

@@ -23,7 +23,7 @@ import javax.xml.namespace.QName;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LogWriterGlassFishSync implements LogWriter {
 

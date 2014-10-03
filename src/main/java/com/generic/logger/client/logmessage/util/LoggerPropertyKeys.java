@@ -6,7 +6,7 @@ package com.generic.logger.client.logmessage.util;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LoggerPropertyKeys {
 

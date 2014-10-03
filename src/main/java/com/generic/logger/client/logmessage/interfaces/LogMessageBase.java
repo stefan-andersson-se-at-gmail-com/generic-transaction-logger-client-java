@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public interface LogMessageBase extends Serializable {
 

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LogMessageImpl implements LogMessage {
 

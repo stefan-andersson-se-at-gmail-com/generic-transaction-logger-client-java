@@ -20,7 +20,7 @@ import javax.xml.namespace.QName;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class LogWriterJavaStandaloneAsync implements LogWriter {
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public interface LogMessageData extends Serializable {
 

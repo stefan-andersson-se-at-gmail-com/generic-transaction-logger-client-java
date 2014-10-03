@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class MimeTypes {
     

@@ -13,7 +13,7 @@ import com.generic.logger.client.logmessage.util.LoggerToProxyObjects;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public class ProxyObjectMapperImpl implements ProxyObjectMapper {
 

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author ds38745
+ * @author Stefan Andersson
  */
 public interface LogMessageContainer {
     
