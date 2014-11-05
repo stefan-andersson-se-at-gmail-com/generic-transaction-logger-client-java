@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.generic.log.message.services</groupId>
+    <groupId>com.erbjuder.log.message.services</groupId>
     <artifactId>log_message_client</artifactId>
     <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+        <netbeans.hint.license>gpl30</netbeans.hint.license>
     </properties>
     
     
@@ -28,7 +29,7 @@
         </dependency>
                  
         <dependency>
-            <groupId>com.generic.log.message.services</groupId>
+            <groupId>com.erbjuder.log.message.services</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
