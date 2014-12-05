@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.erbjuder.log.message.services</groupId>
+    <groupId>com.erbjuder.logger</groupId>
     <artifactId>log_message_client</artifactId>
     <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -16,7 +16,21 @@
     </properties>
     
     
- 
+ <!-- Git --> 
+    <scm>
+        <url>https://github.com/stefan-andersson-se-at-gmail-com/generic-transaction-logger-client-java.git</url>
+        <connection>scm:git:git://github.com/stefan-andersson-se-at-gmail-com/generic-transaction-logger-client-java.git</connection>
+        <developerConnection>scm:git:git@github.com:stefan-andersson-se-at-gmail-com/generic-transaction-logger-client-java.git</developerConnection>
+    </scm>
+
+    <!-- Nexus ( user name and PWD in maven -> settings.xml )-->
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <name>RepositoryProxyRel</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
  
      
     <dependencies>
@@ -29,9 +43,9 @@
         </dependency>
                  
         <dependency>
-            <groupId>com.erbjuder.log.message.services</groupId>
+            <groupId>com.erbjuder.logger</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
-            <version>1.0</version>
+            <version>1.4</version>
             <scope>provided</scope>
         </dependency>
 
