@@ -3,7 +3,7 @@
 
     <groupId>com.erbjuder.logger</groupId>
     <artifactId>log_message_client</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>log_message_client</name>
@@ -16,7 +16,7 @@
     </properties>
     
     
- <!-- Git --> 
+    <!-- Git --> 
     <scm>
         <url>https://github.com/stefan-andersson-se-at-gmail-com/generic-transaction-logger-client-java.git</url>
         <connection>scm:git:git://github.com/stefan-andersson-se-at-gmail-com/generic-transaction-logger-client-java.git</connection>
@@ -90,6 +90,8 @@
     
     <build>
 
+        
+        
         <plugins>
             
             <plugin>
@@ -113,8 +115,8 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
+                <version>3.2</version>
+                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
@@ -135,8 +137,8 @@
                     <!-- Used to fetch and generate client classes      -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <wsdlUrls>
-                        <wsdlUrl>http://localhost:8080/log_message_services_one_dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
-                        <wsdlUrl>http://localhost:8080/log_message_services_one_dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.1-SNAPSHOT/TransactionLogSynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.1-SNAPSHOT/TransactionLogAsynchronousService?wsdl</wsdlUrl>
                     </wsdlUrls>
 
                     <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
