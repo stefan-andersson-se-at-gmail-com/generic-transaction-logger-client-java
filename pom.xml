@@ -3,12 +3,11 @@
 
     <groupId>com.erbjuder.logger</groupId>
     <artifactId>log_message_client</artifactId>
-    <version>1.5</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>log_message_client</name>
-    <url>http://maven.apache.org</url>
-
+   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
@@ -177,8 +176,8 @@
                                 <!-- Unpack "maven-jar-plugin" file                       -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${basedir}/target/${project.artifactId}</targetPath>
-                                    <file>${basedir}/target/${project.artifactId}.jar</file>
+                                    <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
+                                    <file>${basedir}/target/${project.artifactId}-${project.version}.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 
@@ -187,7 +186,7 @@
                                 <!-- Unpack "dependency-jar" files                        -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${basedir}/target/${project.artifactId}</targetPath>
+                                    <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
                                     <file>${basedir}/target/lib/commons-lang3-3.0.1.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
@@ -196,8 +195,8 @@
                                 <!-- Create final archive and attach it as Maven artifact -->      
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <resource>
-                                    <targetPath>${basedir}/target/${project.artifactId}.jar</targetPath>
-                                    <directory>${basedir}/target/${project.artifactId}</directory>
+                                    <targetPath>${basedir}/target/${project.artifactId}-${project.version}.jar</targetPath>
+                                    <directory>${basedir}/target/${project.artifactId}-${project.version}</directory>
                                     <pack>true</pack>
                                 </resource>
                                  
@@ -209,7 +208,7 @@
          
           
         </plugins>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
     <dependencyManagement />
     
