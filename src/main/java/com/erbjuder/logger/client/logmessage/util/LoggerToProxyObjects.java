@@ -20,6 +20,7 @@ import com.erbjuder.logger.client.logmessage.interfaces.LogMessage;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessageData;
 import com.generic.global.transactionlogger.ObjectFactory;
 import com.generic.global.transactionlogger.Transactions;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -42,6 +43,7 @@ public class LoggerToProxyObjects {
         transaction.setApplicationName(StringEscapeUtils.escapeXml(logMessage.getApplicationName()));
         transaction.setTransactionReferenceID(StringEscapeUtils.escapeXml(logMessage.getUniqueId()));
         transaction.setUTCLocalTimeStamp(LoggerToProxyObjects.long2Gregorian(logMessage.getUTCLocalTimeStamp()));
+        transaction.setUTCLocalTimeStampNanoSeconds(logMessage.getUTCLocalTimeStamp().getNanos());
         transaction.setIsError(logMessage.isIsErrorType());
 
         if (logMessage.getExpiryDate() != null) {
@@ -92,7 +94,7 @@ public class LoggerToProxyObjects {
         return dataTypeFactory.newXMLGregorianCalendar(gc);
     }
 
-    public static XMLGregorianCalendar long2Gregorian(long time) {
-        return date2Gregorian(new Date(time));
+    public static XMLGregorianCalendar long2Gregorian(Timestamp timeStamp) {
+        return date2Gregorian(new Date(timeStamp.getTime()));
     }
 }

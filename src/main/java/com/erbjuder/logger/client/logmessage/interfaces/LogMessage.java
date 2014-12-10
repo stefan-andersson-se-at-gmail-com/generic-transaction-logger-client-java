@@ -17,6 +17,7 @@
 package com.erbjuder.logger.client.logmessage.interfaces;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 
@@ -35,7 +36,7 @@ public interface LogMessage extends LogMessageBase, Serializable {
 
     String getFlowPointName();
 
-    long getUTCLocalTimeStamp();
+    Timestamp getUTCLocalTimeStamp();
 
     String getUniqueId();
 
@@ -53,7 +54,7 @@ public interface LogMessage extends LogMessageBase, Serializable {
 
     void setIsErrorType(boolean isErrorType);
 
-    void setUTCLocalTimeStamp(long UTCLocalTimeStamp);
+    void setUTCLocalTimeStamp(Timestamp UTCLocalTimeStamp, int UTCLocalTimeStampNanoSeconds);
 
     void setUniqueId(String uniqueId);
     

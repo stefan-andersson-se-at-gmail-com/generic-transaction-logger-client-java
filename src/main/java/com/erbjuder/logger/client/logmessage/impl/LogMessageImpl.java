@@ -19,6 +19,7 @@ package com.erbjuder.logger.client.logmessage.impl;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessage;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessageData;
 import com.erbjuder.logger.client.logmessage.util.MimeTypes;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class LogMessageImpl implements LogMessage {
     // Mandatory
     private String applicationName;
     private String uniqueId;
-    private long UTCLocalTimeStamp;
+    private Timestamp UTCLocalTimeStamp;
     private boolean isErrorType = false;
     private Date expiryDate;
     //
@@ -52,22 +53,25 @@ public class LogMessageImpl implements LogMessage {
     private List<LogMessageData> logData = new ArrayList<LogMessageData>();
 
     public LogMessageImpl() {
+
         this.uniqueId = UUID.randomUUID().toString();
         this.applicationName = this.uniqueId;
-        this.UTCLocalTimeStamp = new Date().getTime();
+        long timeMillis = System.currentTimeMillis();
+        long nanoTime = System.nanoTime();
+        this.UTCLocalTimeStamp = new Timestamp(timeMillis);
+        this.UTCLocalTimeStamp.setNanos((int) (nanoTime % 1000000000));
+
     }
 
     public LogMessageImpl(String uniqueId) {
 
         if (uniqueId == null || uniqueId.isEmpty()) {
-            this.uniqueId = UUID.randomUUID().toString();
+            new LogMessageImpl();
         } else {
+            new LogMessageImpl();
             this.uniqueId = uniqueId;
         }
-
         this.applicationName = this.uniqueId;
-        this.UTCLocalTimeStamp = new Date().getTime();
-
     }
 
     public LogMessageImpl(
@@ -76,23 +80,28 @@ public class LogMessageImpl implements LogMessage {
             boolean isErrorType,
             Date expiryDate) {
 
+        // Id 
         if (uniqueId == null || uniqueId.isEmpty()) {
-            this.uniqueId = UUID.randomUUID().toString();
+            new LogMessageImpl();
         } else {
+            new LogMessageImpl();
             this.uniqueId = uniqueId;
         }
+
+        // Name
         if (applicationName == null || applicationName.isEmpty()) {
             this.applicationName = this.uniqueId;
         } else {
             this.applicationName = applicationName;
         }
 
-        this.UTCLocalTimeStamp = new Date().getTime();
-        this.isErrorType = isErrorType;
-
+        // isError
         if (expiryDate != null) {
             this.expiryDate = expiryDate;
         }
+
+        this.isErrorType = isErrorType;
+
     }
 
     public String getAbstractDescription() {
@@ -142,13 +151,14 @@ public class LogMessageImpl implements LogMessage {
     }
 
     @Override
-    public long getUTCLocalTimeStamp() {
+    public Timestamp getUTCLocalTimeStamp() {
         return UTCLocalTimeStamp;
     }
 
     @Override
-    public void setUTCLocalTimeStamp(long UTCLocalTimeStamp) {
+    public void setUTCLocalTimeStamp(Timestamp UTCLocalTimeStamp, int UTCLocalTimeStampNanoSeconds) {
         this.UTCLocalTimeStamp = UTCLocalTimeStamp;
+        this.UTCLocalTimeStamp.setNanos((UTCLocalTimeStampNanoSeconds % 1000000000));
     }
 
     @Override
