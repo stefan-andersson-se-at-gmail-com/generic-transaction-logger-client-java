@@ -18,7 +18,6 @@ package com.erbjuder.logger.client.logmessage.impl;
 
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessage;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessageContainer;
-import com.erbjuder.logger.client.logmessage.interfaces.LogMessageData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
