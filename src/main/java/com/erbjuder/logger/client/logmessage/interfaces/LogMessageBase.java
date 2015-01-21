@@ -24,8 +24,10 @@ import java.util.List;
  * @author Stefan Andersson
  */
 public interface LogMessageBase extends Serializable {
-
-    void addContent(String label, String content, String mimeType);
+    void setDescription(String description);
+    void setAbstractDescription(String abstractDescription);
+    void addContent(String label, String mimeType, String content);
 
     List<LogMessageData> getLogData();
+
 }

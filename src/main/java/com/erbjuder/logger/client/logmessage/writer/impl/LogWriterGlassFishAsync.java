@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.xml.namespace.QName;
@@ -38,13 +39,48 @@ import javax.xml.namespace.QName;
  */
 public class LogWriterGlassFishAsync implements LogWriter {
 
-   
     @Override
     public void write(final LogMessageContainer logMessageContainer) {
 
         try {
+            Context ic = new InitialContext();
+            ThreadPoolExecutor threadPoolExecutor = null;
 
-            ThreadPoolExecutor threadPoolExecutor = InitialContext.<ThreadPoolExecutor>doLookup("concurrency/TP");
+            try {
+                threadPoolExecutor = InitialContext.<ThreadPoolExecutor>doLookup("concurrency/TP");
+            } catch (Exception e) {
+                System.err.println("OBJECT NAME [ concurrency/TP ] not found");
+                threadPoolExecutor = null;
+            }
+            if (threadPoolExecutor == null) {
+                try {
+
+                    threadPoolExecutor = (ThreadPoolExecutor) ic.lookup("concurrency/TP");
+                } catch (Exception e) {
+                    System.err.println("OBJECT NAME [ concurrency/TP ] not found");
+                    threadPoolExecutor = null;
+                }
+            }
+            if (threadPoolExecutor == null) {
+                try {
+
+                    threadPoolExecutor = (ThreadPoolExecutor) ic.lookup("java:app/env/concurrency/TP");
+                } catch (Exception e) {
+                    System.err.println("OBJECT NAME [ java:app/env/concurrency/TP ] not found");
+                    threadPoolExecutor = null;
+                }
+            }
+
+            if (threadPoolExecutor == null) {
+                try {
+
+                    threadPoolExecutor = (ThreadPoolExecutor) ic.lookup("java:comp/env/concurrency/TP");
+                } catch (Exception e) {
+                    System.err.println("OBJECT NAME [ java:comp/env/concurrency/TP ] not found");
+                    threadPoolExecutor = null;
+                }
+            }
+
             Runnable task = new Runnable() {
                 @Override
                 public void run() {

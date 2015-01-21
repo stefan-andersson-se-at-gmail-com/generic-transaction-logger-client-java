@@ -29,10 +29,11 @@ public class LogMessageDataImpl implements LogMessageData, Serializable {
     private String label = "";
     private String mimeType = "";
     private String content = "";
+
     public LogMessageDataImpl(
             @NotNull String label,
-            @NotNull String content,
-            @NotNull String mimeType) {
+            @NotNull String mimeType,
+            @NotNull String content) {
 
         this.label = label;
         this.content = content;
@@ -69,5 +70,4 @@ public class LogMessageDataImpl implements LogMessageData, Serializable {
         this.content = content;
     }
 
-    
 }

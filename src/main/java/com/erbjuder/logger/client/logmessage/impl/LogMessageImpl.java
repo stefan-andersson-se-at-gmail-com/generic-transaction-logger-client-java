@@ -211,8 +211,8 @@ public class LogMessageImpl implements LogMessage {
         if (this.abstractDescription != null && !this.abstractDescription.isEmpty()) {
             proxyLogData.add(new LogMessageDataImpl(
                     "Abstract Description",
-                    this.abstractDescription,
-                    MimeTypes.PLAIN_TEXT));
+                    MimeTypes.PLAIN_TEXT,
+                    this.abstractDescription));
         }
 
         //
@@ -220,8 +220,8 @@ public class LogMessageImpl implements LogMessage {
         if (this.description != null && !this.description.isEmpty()) {
             proxyLogData.add(new LogMessageDataImpl(
                     "Description",
-                    this.description,
-                    MimeTypes.PLAIN_TEXT));
+                    MimeTypes.PLAIN_TEXT,
+                    this.description));
 
         }
 
@@ -235,9 +235,9 @@ public class LogMessageImpl implements LogMessage {
     }
 
     @Override
-    public void addContent(String label, String content, String contentMimeType) {
+    public void addContent(String label, String contentMimeType, String content) {
         if (MimeTypes.MIME_TYPES.contains(contentMimeType)) {
-            logData.add(new LogMessageDataImpl(label, content, contentMimeType));
+            logData.add(new LogMessageDataImpl(label, contentMimeType, content));
         }
     }
 }
