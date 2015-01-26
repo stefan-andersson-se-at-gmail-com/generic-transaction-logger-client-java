@@ -71,10 +71,10 @@ public class LogWriterWebsphereSync implements LogWriter {
 
         } catch (MalformedURLException ex) {
             String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC).toString();
-            Logger.getLogger(LogWriterGlassFishAsync.class.getName()).log(Level.SEVERE, msgText);
-            Logger.getLogger(LogWriterGlassFishAsync.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterWebsphereSync.class.getName()).log(Level.SEVERE, msgText);
+            Logger.getLogger(LogWriterWebsphereSync.class.getName()).log(Level.SEVERE, ex.getMessage());
         } catch (ServiceFault ex) {
-            Logger.getLogger(LogWriterGlassFishAsync.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(LogWriterWebsphereSync.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
 
         //

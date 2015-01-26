@@ -100,7 +100,7 @@ public class LogWriterWebsphereAsync implements LogWriter {
 
             } catch (MalformedURLException ex) {
                 String msgText = getMalformedURLExceptionText(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC).toString();
-                Logger.getLogger(LogWriterGlassFishAsync.class.getName()).log(Level.SEVERE, msgText);
+                Logger.getLogger(LogWriterWebsphereAsync.class.getName()).log(Level.SEVERE, msgText);
                 Logger.getLogger(LogWriterWebsphereAsync.class.getName()).log(Level.SEVERE, ex.getMessage());
             }
         }

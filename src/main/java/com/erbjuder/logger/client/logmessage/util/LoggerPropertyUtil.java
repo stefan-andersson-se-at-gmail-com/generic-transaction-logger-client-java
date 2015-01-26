@@ -38,7 +38,7 @@ public class LoggerPropertyUtil {
 
             //load properties file
             LoggerPropertyUtil util = new LoggerPropertyUtil();
-            props = util.getPropertiesFromClasspath("loggger.properties");
+            props = util.getPropertiesFromClasspath("logger.properties");
 
         } catch (FileNotFoundException ex) {
             System.err.println("[ Exception ] " + ex.getMessage());
