@@ -104,7 +104,7 @@ public class LogWriterSAPPIAsync implements LogWriter {
         builder.append("No jndi loockup for [ ").append(wsdl_location).append(" ] was found. \n");
         builder.append("To set application custom resource, run command ");
         builder.append("[ \n");
-        builder.append("./asadmin create-custom-resource --restype=java.lang.String --factoryclass=org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --property value=\"http\\://<the value>\" ").append(wsdl_location);
+        builder.append("< SAP ref page >");
         builder.append(" ] \n");
         builder.append("OR set key and valid URl in logger.propperties file! \n");
         return builder;
