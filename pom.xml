@@ -41,12 +41,15 @@
             <scope>test</scope>
         </dependency>
                  
+        <!-- Glassfish -->        
         <dependency>
             <groupId>com.erbjuder.logger</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
             <version>1.5-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
-
+        
+        <!-- IBM Websphere V7 -->
         <dependency>
             <groupId>org.ibm.was</groupId>
             <artifactId>was</artifactId>
@@ -55,6 +58,17 @@
             <!-- Install this jar local --> 
             <!--<scope>system</scope>-->
             <!--<systemPath>${project.basedir}/lib/was_public.jar</systemPath>-->
+        </dependency>
+
+        <!-- SAP PI 7.3  -->
+        <dependency>
+            <groupId>com.sap.aii</groupId>
+            <artifactId>sap</artifactId>
+            <version>7.3</version>
+            <scope>provided</scope>
+            <!-- Install this jar local --> 
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${project.basedir}/lib/com.sap.aii.af.svc_api.jar</systemPath>-->
         </dependency>
 
 
@@ -114,7 +128,7 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
-                 <configuration>
+                <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>

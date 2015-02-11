@@ -1,0 +1,10 @@
+To get the SAP-PI and IBM Websphere writers to work you must include fully implemented jar library. The *fake*.jar are just fakes! 
+
+Replace the *fake jar(s) with:
+ SAP-PI : com.sap.aii.af.svc_api.jar
+ WAS	: was_public.jar
+
+
+References:
+http://www-01.ibm.com/support/knowledgecenter/SS7K4U_7.0.0/com.ibm.websphere.javadoc.doc/web/apidocs/com/ibm/websphere/asynchbeans
+https://help.sap.com/javadocs/pi/SP3/xpi/index.html?com/sap/aii/af/service/resource/SAPAdapterResources.html
