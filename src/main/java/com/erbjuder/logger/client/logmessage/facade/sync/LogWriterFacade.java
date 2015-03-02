@@ -24,6 +24,7 @@ import com.erbjuder.logger.client.logmessage.util.LoggerPropertyUtil;
 import com.erbjuder.logger.client.logmessage.util.LoggerPropertyValues;
 import com.erbjuder.logger.client.logmessage.writer.impl.LogWriterGlassFishSync;
 import com.erbjuder.logger.client.logmessage.writer.impl.LogWriterJavaStandaloneSync;
+import com.erbjuder.logger.client.logmessage.writer.impl.LogWriterSAPPISync;
 import com.erbjuder.logger.client.logmessage.writer.impl.LogWriterWebsphereSync;
 import com.generic.global.transactionlogger.Response;
 import java.io.Serializable;
@@ -48,6 +49,8 @@ public class LogWriterFacade implements Serializable {
                 response = new LogWriterGlassFishSync().write(logMessageContainer);
             } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_WEBSPHEREV6.equalsIgnoreCase(environment)) {
                 response = new LogWriterWebsphereSync().write(logMessageContainer);
+            } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_SAP_PI_V73.equalsIgnoreCase(environment)) {
+                response = new LogWriterSAPPISync().write(logMessageContainer);
             } else {
                 Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, "Invalid logger.propperies! No prop value=[ LOGGING_IN_ENVIRONMENT ]");
 
