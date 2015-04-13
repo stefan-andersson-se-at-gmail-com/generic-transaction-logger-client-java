@@ -18,7 +18,6 @@ package com.erbjuder.logger.client.logmessage.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.Set;
 
@@ -32,13 +31,10 @@ public class LoggerPropertyUtil {
 
     static {
 
-        props = new Properties();
-
         try {
-
-            //load properties file
-            LoggerPropertyUtil util = new LoggerPropertyUtil();
-            props = util.getPropertiesFromClasspath("logger.properties");
+            // load properties file
+            props = new Properties();
+            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("logger.properties"));
 
         } catch (FileNotFoundException ex) {
             System.err.println("[ Exception ] " + ex.getMessage());
@@ -59,18 +55,4 @@ public class LoggerPropertyUtil {
         return (Set) props.keySet();
     }
 
-    private Properties getPropertiesFromClasspath(String propFileName)
-            throws IOException {
-        Properties props = new Properties();
-        InputStream inputStream =
-                this.getClass().getClassLoader().getResourceAsStream(propFileName);
-
-        if (inputStream == null) {
-            throw new FileNotFoundException("property file '" + propFileName
-                    + "' not found in the classpath");
-        }
-
-        props.load(inputStream);
-        return props;
-    }
 }

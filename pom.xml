@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.erbjuder.logger</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
-            <version>1.9</version>
+            <version>1.10-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         
@@ -129,8 +129,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -149,8 +149,8 @@
                     <!-- Used to fetch and generate client classes      -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <wsdlUrls>
-                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.7-Dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
-                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.7-Dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.10-SNAPSHOT-Dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.10-SNAPSHOT-Dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
                     </wsdlUrls>
 
                     <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
