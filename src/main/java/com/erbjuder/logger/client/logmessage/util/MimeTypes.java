@@ -24,13 +24,26 @@ import java.util.Set;
  * @author Stefan Andersson
  */
 public class MimeTypes {
-    
-    public static final String PLAIN_TEXT = "text/plain";
-    public static final String BASE64 = "application/base64";
+
+    public static final String TEXT = "text/plain";
+    public static final String XML = "text/xml";
+    public static final String HTML = "text/html";
+    public static final String PDF = "application/pdf";
+    public static final String IMAGE_GIF = "image/gif";
+    public static final String IMAGE_TIFF = "image/tiff";
+    public static final String IMAGE_JPEG = "image/jpeg";
+    public static final String IMAGE_BMP = "image/bmp";
     public static final Set<String> MIME_TYPES = new HashSet<String>();
-    
+
     static {
-        MIME_TYPES.add(MimeTypes.BASE64);
-        MIME_TYPES.add(MimeTypes.PLAIN_TEXT);
+        MIME_TYPES.add(MimeTypes.XML);
+        MIME_TYPES.add(MimeTypes.TEXT);
+        MIME_TYPES.add(MimeTypes.HTML);
+        MIME_TYPES.add(MimeTypes.PDF);
+        MIME_TYPES.add(MimeTypes.IMAGE_GIF);
+        MIME_TYPES.add(MimeTypes.IMAGE_TIFF);
+        MIME_TYPES.add(MimeTypes.IMAGE_JPEG);
+        MIME_TYPES.add(MimeTypes.IMAGE_BMP);
+  
     }
 }

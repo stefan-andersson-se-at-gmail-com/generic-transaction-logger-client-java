@@ -49,7 +49,7 @@ public class LogWriterFacade implements Serializable {
             }  else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_SAP_PI_V73.equalsIgnoreCase(environment)) {
                 new LogWriterSAPPIAsync().write(logMessageContainer);
             } else {
-                Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, "Invalid logger.propperies! No prop value=[ LOGGING_IN_ENVIRONMENT ]");
+                Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, "Invalid logger.properies! No prop value=[ LOGGING_IN_ENVIRONMENT ]");
             }
 
         } catch (Exception ex) {

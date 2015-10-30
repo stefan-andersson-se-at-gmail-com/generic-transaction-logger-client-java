@@ -20,7 +20,9 @@ import com.erbjuder.logger.client.logmessage.interfaces.LogMessage;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessageData;
 import com.generic.global.transactionlogger.ObjectFactory;
 import com.generic.global.transactionlogger.Transactions;
+import com.sun.xml.messaging.saaj.util.Base64;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -72,7 +74,7 @@ public class LoggerToProxyObjects {
             if (!label.isEmpty() && !mimeType.isEmpty() && !content.isEmpty()) {
                 Transactions.Transaction.TransactionLogData transactionLogData = new Transactions.Transaction.TransactionLogData();
                 transactionLogData.setContentLabel(StringEscapeUtils.escapeXml(label));
-                transactionLogData.setContent(StringEscapeUtils.escapeXml(content));
+                transactionLogData.setContent(Arrays.toString(Base64.encode(content.getBytes())));
                 transactionLogData.setContentMimeType(mimeType);
                 transaction.getTransactionLogData().add(transactionLogData);
             }

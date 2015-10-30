@@ -36,6 +36,8 @@ public class LoggerPropertyUtil {
             props = new Properties();
             props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("logger.properties"));
 
+             
+
         } catch (FileNotFoundException ex) {
             System.err.println("[ Exception ] " + ex.getMessage());
         } catch (IOException ex) {
@@ -43,8 +45,9 @@ public class LoggerPropertyUtil {
         }
 
     }
-
     private LoggerPropertyUtil() {
+
+        
     }
 
     public static String getProperty(String key) {

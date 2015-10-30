@@ -60,7 +60,7 @@ public class LogMessageImpl implements LogMessage {
         long nanoTime = System.nanoTime();
         this.UTCLocalTimeStamp = new Timestamp(timeMillis);
         this.UTCLocalTimeStamp.setNanos((int) (nanoTime % 1000000000));
-
+ 
     }
 
     public LogMessageImpl(String uniqueId) {
@@ -84,7 +84,7 @@ public class LogMessageImpl implements LogMessage {
         if (uniqueId == null || uniqueId.isEmpty()) {
             new LogMessageImpl();
         } else {
-            new LogMessageImpl();
+             new LogMessageImpl();
             this.uniqueId = uniqueId;
         }
 
@@ -108,6 +108,7 @@ public class LogMessageImpl implements LogMessage {
         return abstractDescription;
     }
 
+    @Override
     public void setAbstractDescription(String abstractDescription) {
         this.abstractDescription = abstractDescription;
     }
@@ -116,6 +117,7 @@ public class LogMessageImpl implements LogMessage {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
@@ -211,7 +213,7 @@ public class LogMessageImpl implements LogMessage {
         if (this.abstractDescription != null && !this.abstractDescription.isEmpty()) {
             proxyLogData.add(new LogMessageDataImpl(
                     "Abstract Description",
-                    MimeTypes.PLAIN_TEXT,
+                    MimeTypes.TEXT,
                     this.abstractDescription));
         }
 
@@ -220,7 +222,7 @@ public class LogMessageImpl implements LogMessage {
         if (this.description != null && !this.description.isEmpty()) {
             proxyLogData.add(new LogMessageDataImpl(
                     "Description",
-                    MimeTypes.PLAIN_TEXT,
+                    MimeTypes.TEXT,
                     this.description));
 
         }
