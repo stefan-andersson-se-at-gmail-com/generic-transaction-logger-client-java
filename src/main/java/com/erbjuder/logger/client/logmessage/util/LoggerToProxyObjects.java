@@ -20,15 +20,14 @@ import com.erbjuder.logger.client.logmessage.interfaces.LogMessage;
 import com.erbjuder.logger.client.logmessage.interfaces.LogMessageData;
 import com.generic.global.transactionlogger.ObjectFactory;
 import com.generic.global.transactionlogger.Transactions;
-import com.sun.xml.messaging.saaj.util.Base64;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import org.apache.axis.encoding.Base64;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
@@ -70,11 +69,12 @@ public class LoggerToProxyObjects {
             String label = logData.getLabel() != null ? logData.getLabel().trim() : "";
             String content = logData.getContent() != null ? logData.getContent().trim() : "";
             String mimeType = logData.getMimeType() != null ? logData.getMimeType().trim() : "";
-
+            
+            
             if (!label.isEmpty() && !mimeType.isEmpty() && !content.isEmpty()) {
                 Transactions.Transaction.TransactionLogData transactionLogData = new Transactions.Transaction.TransactionLogData();
                 transactionLogData.setContentLabel(StringEscapeUtils.escapeXml(label));
-                transactionLogData.setContent(Arrays.toString(Base64.encode(content.getBytes())));
+                transactionLogData.setContent(Base64.encode(content.getBytes()));
                 transactionLogData.setContentMimeType(mimeType);
                 transaction.getTransactionLogData().add(transactionLogData);
             }
