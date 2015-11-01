@@ -32,7 +32,7 @@ public class MimeTypes {
     public static final String IMAGE_GIF = "image/gif";
     public static final String IMAGE_TIFF = "image/tiff";
     public static final String IMAGE_JPEG = "image/jpeg";
-    public static final String IMAGE_BMP = "image/bmp";
+    public static final String IMAGE_PNG = "image/png";
     public static final Set<String> MIME_TYPES = new HashSet<String>();
 
     static {
@@ -43,7 +43,7 @@ public class MimeTypes {
         MIME_TYPES.add(MimeTypes.IMAGE_GIF);
         MIME_TYPES.add(MimeTypes.IMAGE_TIFF);
         MIME_TYPES.add(MimeTypes.IMAGE_JPEG);
-        MIME_TYPES.add(MimeTypes.IMAGE_BMP);
+        MIME_TYPES.add(MimeTypes.IMAGE_PNG);
   
     }
 }
