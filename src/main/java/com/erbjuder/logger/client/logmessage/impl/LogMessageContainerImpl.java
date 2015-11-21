@@ -34,14 +34,14 @@ public class LogMessageContainerImpl implements LogMessageContainer {
     private List<LogMessage> logMessages = new ArrayList<LogMessage>();
 
     public LogMessageContainerImpl() {
-        this.uniqueId = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID().toString().replaceAll("-", "");
         this.applicationName = this.uniqueId;
     }
 
     public LogMessageContainerImpl(String applicationName, String uniqueId) {
 
         if (uniqueId == null || uniqueId.isEmpty()) {
-            this.uniqueId = UUID.randomUUID().toString();
+            this.uniqueId = UUID.randomUUID().toString().replaceAll("-", "");
         } else {
             this.uniqueId = uniqueId;
         }
@@ -66,11 +66,9 @@ public class LogMessageContainerImpl implements LogMessageContainer {
     @Override
     public void setUniqueId(String uniqueId) {
 
-        if (uniqueId != null && !uniqueId.isEmpty()) {
-            if (!uniqueId.equalsIgnoreCase(this.getUniqueId())) {
+        if (uniqueId != null && !uniqueId.isEmpty() && !uniqueId.equals(this.getUniqueId())) {
                 this.uniqueId = uniqueId;
                 this.syncronizeLogMessages(this.getLogMessages());
-            }
         }
     }
 

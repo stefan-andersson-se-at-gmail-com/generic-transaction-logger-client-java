@@ -54,7 +54,7 @@ public class LogMessageImpl implements LogMessage {
 
     public LogMessageImpl() {
 
-        this.uniqueId = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID().toString().replaceAll("-", "");
         this.applicationName = this.uniqueId;
         long timeMillis = System.currentTimeMillis();
         long nanoTime = System.nanoTime();
