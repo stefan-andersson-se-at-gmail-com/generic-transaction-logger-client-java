@@ -124,4 +124,6 @@ public class LogMessageContainerImpl implements LogMessageContainer {
         logMessage.setApplicationName(this.getApplicationName());
         return logMessage;
     }
+
+   
 }
