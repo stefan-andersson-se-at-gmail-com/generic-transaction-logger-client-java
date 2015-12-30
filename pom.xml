@@ -3,7 +3,7 @@
 
     <groupId>com.erbjuder.logger</groupId>
     <artifactId>log_message_client</artifactId>
-    <version>1.10-SNAPSHOT</version>
+    <version>1.12-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>log_message_client</name>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.erbjuder.logger</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
-            <version>1.10-SNAPSHOT</version>
+            <version>1.12</version>
             <scope>provided</scope>
         </dependency>
         
