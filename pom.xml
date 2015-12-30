@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.erbjuder.logger</groupId>
-    <artifactId>log_message_client</artifactId>
+    <artifactId>log_message_client_java</artifactId>
     <version>1.13-SNAPSHOT</version>
     <packaging>jar</packaging>
 
