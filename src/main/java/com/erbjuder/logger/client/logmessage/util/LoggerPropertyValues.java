@@ -24,6 +24,8 @@ public class LoggerPropertyValues {
     
     public static final String LOGGING_IN_ENVIRONMENT_STANDALONE = "STANDALONE";
     public static final String LOGGING_IN_ENVIRONMENT_GLASSFISHV3 = "GLASSFISH-V3";
+    public static final String LOGGING_IN_ENVIRONMENT_GLASSFISHV4 = "GLASSFISH-V4";
     public static final String LOGGING_IN_ENVIRONMENT_WEBSPHEREV6 = "WEBSPHERE-V6";
     public static final String LOGGING_IN_ENVIRONMENT_SAP_PI_V73 = "SAP-PI-V73";
+    public static final String LOGGING_IN_ENVIRONMENT_SAP_PI_V74 = "SAP-PI-V74";
 }

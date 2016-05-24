@@ -149,16 +149,15 @@
                     <!-- Used to fetch and generate client classes      -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <wsdlUrls>
-                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.10-SNAPSHOT-Dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
-                        <wsdlUrl>http://server-1:8080/log_message_services_backend-1.10-SNAPSHOT-Dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://erbjuder.com/log_message_services_one_dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://erbjuder.com/log_message_services_one_dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
                     </wsdlUrls>
 
                     <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
-            
-            
+ 
             <plugin>
                  
                 
@@ -201,6 +200,11 @@
                                 <resource>
                                     <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
                                     <file>${basedir}/target/lib/commons-lang3-3.0.1.jar</file>
+                                    <unpack>true</unpack>
+                                </resource>
+                                <resource>
+                                    <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
+                                    <file>${basedir}/target/lib/axis-1.4.jar</file>
                                     <unpack>true</unpack>
                                 </resource>
                                 

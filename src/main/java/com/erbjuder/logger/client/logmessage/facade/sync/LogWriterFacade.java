@@ -45,11 +45,13 @@ public class LogWriterFacade implements Serializable {
             String environment = LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGGING_IN_ENVIRONMENT);
             if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_STANDALONE.equalsIgnoreCase(environment)) {
                 response = new LogWriterJavaStandaloneSync().write(logMessageContainer);
-            } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_GLASSFISHV3.equalsIgnoreCase(environment)) {
-                response = new LogWriterGlassFishSync().write(logMessageContainer);
             } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_WEBSPHEREV6.equalsIgnoreCase(environment)) {
                 response = new LogWriterWebsphereSync().write(logMessageContainer);
-            } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_SAP_PI_V73.equalsIgnoreCase(environment)) {
+            } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_GLASSFISHV3.equalsIgnoreCase(environment)
+                    || LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_GLASSFISHV4.equalsIgnoreCase(environment)) {
+                response = new LogWriterGlassFishSync().write(logMessageContainer);
+            } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_SAP_PI_V73.equalsIgnoreCase(environment)
+                    || LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_SAP_PI_V74.equalsIgnoreCase(environment)) {
                 response = new LogWriterSAPPISync().write(logMessageContainer);
             } else {
                 Logger.getLogger(LogWriterFacade.class.getName()).log(Level.SEVERE, "Invalid logger.properies! No prop value=[ LOGGING_IN_ENVIRONMENT ]");

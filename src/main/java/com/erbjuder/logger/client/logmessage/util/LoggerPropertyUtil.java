@@ -18,8 +18,11 @@ package com.erbjuder.logger.client.logmessage.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,33 +32,91 @@ public class LoggerPropertyUtil {
 
     private static Properties props;
 
-    static {
+    public static final String FILE_NAME = "../logger.properties";
+    public static final String PERSISTENCE_CLASSES = "../classes/logger.properties";
+    public static final String PERSISTENCE_JAR_PATH_1 = "../META-INF/logger.properties";
+    public static final String PERSISTENCE_JAR_PATH_2 = "../META-INF/classes/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_1 = "../WEB-INF/classes/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_2 = "../WEB-INF/classes/META-INF/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_3 = "../WEB-INF/classes/META-INF/classes/logger.properties";
 
-        try {
-            // load properties file
-            props = new Properties();
-            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("logger.properties"));
-
-             
-
-        } catch (FileNotFoundException ex) {
-            System.err.println("[ Exception ] " + ex.getMessage());
-        } catch (IOException ex) {
-            System.err.println("[ Exception ] " + ex.getMessage());
-        }
-
-    }
     private LoggerPropertyUtil() {
 
-        
     }
 
     public static String getProperty(String key) {
+        if (props == null) {
+            props = new LoggerPropertyUtil().getPropertiesFromClasspath();
+        }
+
         return props.getProperty(key);
     }
 
     public static Set<String> getkeys() {
+        if (props == null) {
+            props = new LoggerPropertyUtil().getPropertiesFromClasspath();
+        }
         return (Set) props.keySet();
     }
 
+    private Properties getPropertiesFromClasspath() {
+
+        try {
+
+            Properties properties = new Properties();
+
+            InputStream in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_WAR_PATH_3);
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_WAR_PATH_2);
+            }
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_WAR_PATH_1);
+            }
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_JAR_PATH_2);
+            }
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_JAR_PATH_1);
+            }
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.PERSISTENCE_CLASSES);
+            }
+
+            if (in == null) {
+                in = this.findPropertieStream(LoggerPropertyUtil.FILE_NAME);
+            }
+
+            if (in != null) {
+                properties.load(in);
+                in.close();
+                return properties;
+            } else {
+                Logger.getLogger(LoggerPropertyUtil.class.getName()).log(Level.SEVERE, "logger.properties NOT in valid path");
+                return null;
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoggerPropertyUtil.class.getName()).log(Level.SEVERE, ex.getMessage());
+            return null;
+        } catch (IOException ex) {
+            Logger.getLogger(LoggerPropertyUtil.class.getName()).log(Level.SEVERE, ex.getMessage());
+            return null;
+        }
+    }
+
+    private InputStream findPropertieStream(String path) {
+
+        InputStream in = this.getClass().getClassLoader().getResourceAsStream(path);
+        if (in != null) {
+            return in;
+        }
+
+        in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+        if (in != null) {
+            return in;
+        }
+
+        return in;
+
+    }
 }
