@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.erbjuder.logger</groupId>
             <artifactId>log_message_thread_pool_executor_glassfish</artifactId>
-            <version>1.12-SNAPSHOT</version>
+            <version>1.13-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         
@@ -149,8 +149,8 @@
                     <!-- Used to fetch and generate client classes      -->
                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <wsdlUrls>
-                        <wsdlUrl>http://erbjuder.com/log_message_services_one_dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
-                        <wsdlUrl>http://erbjuder.com/log_message_services_one_dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://erbjuder.com/log_message_services_backend_dev/TransactionLogSynchronousService?wsdl</wsdlUrl>
+                        <wsdlUrl>http://erbjuder.com/log_message_services_backend_dev/TransactionLogAsynchronousService?wsdl</wsdlUrl>
                     </wsdlUrls>
 
                     <sourceDestDir>target/generated-sources/jaxws</sourceDestDir>

@@ -102,7 +102,7 @@ public class LogWriterGlassFishAsync implements LogWriter {
                             wsdlLocation = new URL(InitialContext.<String>doLookup(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
 
                         } catch (NamingException e) {
-                            wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
+                            wsdlLocation = new URL(new LoggerPropertyUtil().getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
                         }
 
                         //

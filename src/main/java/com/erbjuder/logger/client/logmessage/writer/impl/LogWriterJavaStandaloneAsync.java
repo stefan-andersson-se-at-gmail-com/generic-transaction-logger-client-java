@@ -56,7 +56,7 @@ public class LogWriterJavaStandaloneAsync implements LogWriter {
                         // 
                         // fetch endPoint
                         QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogAsynchronousService");
-                        URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
+                        URL wsdlLocation = new URL(new LoggerPropertyUtil().getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_ASYNC));
 
                         //
                         // Send

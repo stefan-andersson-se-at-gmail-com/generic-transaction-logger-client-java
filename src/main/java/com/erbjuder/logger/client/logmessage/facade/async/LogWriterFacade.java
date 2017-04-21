@@ -39,7 +39,7 @@ public class LogWriterFacade implements Serializable {
     public void write(LogMessageContainer logMessageContainer) {
 
         try {
-            String environment = LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGGING_IN_ENVIRONMENT);
+            String environment = new LoggerPropertyUtil().getProperty(LoggerPropertyKeys.LOGGING_IN_ENVIRONMENT);
             if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_STANDALONE.equalsIgnoreCase(environment)) {
                 new LogWriterJavaStandaloneAsync().write(logMessageContainer);
             } else if (LoggerPropertyValues.LOGGING_IN_ENVIRONMENT_WEBSPHEREV6.equalsIgnoreCase(environment)) {

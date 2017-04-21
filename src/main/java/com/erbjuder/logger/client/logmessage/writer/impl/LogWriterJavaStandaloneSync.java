@@ -52,7 +52,7 @@ public class LogWriterJavaStandaloneSync implements LogWriter {
             // 
             // fetch endPoint
             QName QName = new QName("urn:generic.com:Global:TransactionLogger", "TransactionLogSynchronousService");
-            URL wsdlLocation = new URL(LoggerPropertyUtil.getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
+            URL wsdlLocation = new URL(new LoggerPropertyUtil().getProperty(LoggerPropertyKeys.LOGMESSAGESERVICE_WSDL_LOCATION_SYNC));
 
             //
             // Send

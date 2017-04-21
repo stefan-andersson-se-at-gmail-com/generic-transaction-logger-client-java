@@ -30,21 +30,23 @@ import java.util.logging.Logger;
  */
 public class LoggerPropertyUtil {
 
-    private static Properties props;
+    private Properties props;
 
-    public static final String FILE_NAME = "../logger.properties";
-    public static final String PERSISTENCE_CLASSES = "../classes/logger.properties";
-    public static final String PERSISTENCE_JAR_PATH_1 = "../META-INF/logger.properties";
-    public static final String PERSISTENCE_JAR_PATH_2 = "../META-INF/classes/logger.properties";
-    public static final String PERSISTENCE_WAR_PATH_1 = "../WEB-INF/classes/logger.properties";
-    public static final String PERSISTENCE_WAR_PATH_2 = "../WEB-INF/classes/META-INF/logger.properties";
-    public static final String PERSISTENCE_WAR_PATH_3 = "../WEB-INF/classes/META-INF/classes/logger.properties";
 
-    private LoggerPropertyUtil() {
+    public static final String PARENT = "..";
+    public static final String FILE_NAME = PARENT + "/logger.properties";
+    public static final String PERSISTENCE_CLASSES = PARENT + "/classes/logger.properties";
+    public static final String PERSISTENCE_JAR_PATH_1 = PARENT + "/META-INF/logger.properties";
+    public static final String PERSISTENCE_JAR_PATH_2 = PARENT + "/META-INF/classes/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_1 = PARENT + "/WEB-INF/classes/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_2 = PARENT + "/WEB-INF/classes/META-INF/logger.properties";
+    public static final String PERSISTENCE_WAR_PATH_3 = PARENT + "/WEB-INF/classes/META-INF/classes/logger.properties";
+
+    public LoggerPropertyUtil() {
 
     }
 
-    public static String getProperty(String key) {
+    public String getProperty(String key) {
         if (props == null) {
             props = new LoggerPropertyUtil().getPropertiesFromClasspath();
         }
@@ -52,7 +54,7 @@ public class LoggerPropertyUtil {
         return props.getProperty(key);
     }
 
-    public static Set<String> getkeys() {
+    public Set<String> getkeys() {
         if (props == null) {
             props = new LoggerPropertyUtil().getPropertiesFromClasspath();
         }
@@ -84,6 +86,14 @@ public class LoggerPropertyUtil {
 
             if (in == null) {
                 in = this.findPropertieStream(LoggerPropertyUtil.FILE_NAME);
+            }
+
+            if (in == null) {
+                in = this.findPropertieStream("./logger.properties");
+            }
+
+            if (in == null) {
+                in = this.findPropertieStream("logger.properties");
             }
 
             if (in != null) {
